@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreenAccent,
-        title: Text("Flutter Menu"),
+        title: Text("Menu"),
       ),
       body: ListView.builder(
         itemCount: menu.length,
