@@ -122,6 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       totalprice.toString() +
                       " บาท",
                 ),
+                actions: [
+                  ElevatedButton(
+                    child: Text("ตกลง"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
               );
               showDialog(
                 context: context,
