@@ -81,6 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    int totalprice = 0;
+    int totalitem = 0;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreenAccent,
@@ -105,8 +108,20 @@ class _MyHomePageState extends State<MyHomePage> {
               "ประเภท " + food.type + "\nราคา " + food.price + " บาท",
             ),
             onTap: () {
+              totalprice += int.parse(food.price);
+              totalitem++;
+
               AlertDialog alert = AlertDialog(
                 title: Text("คุณเลือกเมนู " + food.name),
+                content: Text(
+                  "ราคา " +
+                      food.price +
+                      " บาท\n\nรวม " +
+                      totalitem.toString() +
+                      " รายการ\nรวมเป็นเงิน " +
+                      totalprice.toString() +
+                      " บาท",
+                ),
               );
               showDialog(
                 context: context,
