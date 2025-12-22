@@ -31,16 +31,27 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   List<FoodMenu> menu = [
-    FoodMenu("ข้าวผัดกะเพราหมูสับ + ไข่ดาว", "65", "assets/images/m1.jpg"),
-    FoodMenu("ผัดไทกุ้งสด", "70", "assets/images/m2.jpg"),
-    FoodMenu("ซูชิ", "60", "assets/images/m3.jpg"),
-    FoodMenu("บาบีคิว", "100", "assets/images/m4.jpg"),
-    FoodMenu("ซาลาเปา", "50", "assets/images/m5.jpg"),
-    FoodMenu("กุ้งเผา", "250", "assets/images/m6.jpg"),
-    FoodMenu("แกงจืดมะระหมูสับ", "55", "assets/images/m7.jpg"),
-    FoodMenu("ปลาทอด", "80", "assets/images/m8.jpg"),
-    FoodMenu("แหนมเนือง", "59", "assets/images/m9.jpg"),
-    FoodMenu("แฮมเบอร์เกอร์", "99", "assets/images/m10.jpg"),
+    FoodMenu("ข้าวผัดกะเพราหมูสับ", "65", "assets/images/m1.jpg", "ผัด"),
+    FoodMenu("ผัดไทกุ้งสด", "70", "assets/images/m2.jpg", "ผัด"),
+    FoodMenu("ซูชิ 6 ชิ้น", "60", "assets/images/m3.jpg", "ดิบ"),
+    FoodMenu("บาบีคิว 10 ไม้", "100", "assets/images/m4.jpg", "ย่าง"),
+    FoodMenu("ซาลาเปา 3 ลูก", "50", "assets/images/m5.jpg", "นึ่ง"),
+    FoodMenu("กุ้งเผา", "250", "assets/images/m6.jpg", "ย่าง"),
+    FoodMenu("แกงจืดมะระหมูสับ", "50", "assets/images/m7.jpg", "ต้ม"),
+    FoodMenu("ปลาทอด", "80", "assets/images/m8.jpg", "ทอด"),
+    FoodMenu("แหนมเนือง", "55", "assets/images/m9.jpg", "ลวก"),
+    FoodMenu("แฮมเบอร์เกอร์", "99", "assets/images/m10.jpg", "ย่าง"),
+
+    FoodMenu("ปีกไก่ทอด", "40", "assets/images/m11.jpg", "ทอด"),
+    FoodMenu("ผัดซีอิ้วหมู", "70", "assets/images/m12.jpg", "ผัด"),
+    FoodMenu("ข้าวหมูกรอบ", "65", "assets/images/m13.jpg", "ทอด"),
+    FoodMenu("ก๋วยเตี๋ยวต้มยำ", "55", "assets/images/m14.jpg", "ต้ม"),
+    FoodMenu("ซาชิมิแซลมอน", "320", "assets/images/m15.jpg", "ดิบ"),
+    FoodMenu("กุ้งแช่น้ำปลา", "110", "assets/images/m16.jpg", "ดิบ"),
+    FoodMenu("เสือร้องไห้", "120", "assets/images/m17.jpg", "ย่าง"),
+    FoodMenu("หมูทอดแดดเดียว", "80", "assets/images/m18.jpg", "ทอด"),
+    FoodMenu("ไก่ย่าง 1 ตัว", "160", "assets/images/m19.jpg", "ย่าง"),
+    FoodMenu("ต้มยํากุ้ง", "90", "assets/images/m20.jpg", "ต้ม"),
   ];
 
   List<Widget> getData(int count) {
@@ -80,12 +91,19 @@ class _MyHomePageState extends State<MyHomePage> {
         itemBuilder: (BuildContext context, int index) {
           FoodMenu food = menu[index];
           return ListTile(
-            leading: Image.asset(food.img),
+            leading: Image.asset(
+              food.img,
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
             title: Text(
-              "เมนูที่ ${index + 1}" + "." + food.name,
+              "เมนูที่ ${index + 1}" + ". " + food.name,
               style: TextStyle(fontSize: 20),
             ),
-            subtitle: Text(" ราคา " + food.price + " บาท"),
+            subtitle: Text(
+              "ประเภท " + food.type + "\nราคา " + food.price + " บาท",
+            ),
             onTap: () {
               AlertDialog alert = AlertDialog(
                 title: Text("คุณเลือกเมนู " + food.name),
