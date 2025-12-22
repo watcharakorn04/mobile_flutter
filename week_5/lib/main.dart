@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 }
 
 class InputDecoratorExample extends StatelessWidget {
-  const InputDecoratorExample({super.key});
+  const InputDecoratorExample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class InputDecoratorExample extends StatelessWidget {
           final Color color = states.contains(MaterialState.error)
               ? Theme.of(context).colorScheme.error
               : Colors.orange;
-          return TextStyle(color: color, fontSize: 1.3);
+          return TextStyle(color: color, letterSpacing: 1.3);
         }),
       ),
       validator: (String? value) {
@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: InputDecoratorExample(),
               ),
+              SizedBox(height: 5),
 
               MoneyBox("ยอดเงินคงเหลือ", 20000.512, 150, 20, Colors.blue),
               SizedBox(height: 10),
