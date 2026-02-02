@@ -101,6 +101,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   radius: 20,
                   backgroundImage: AssetImage('assets/images/marvel.jpg'),
                 ),
+                Radio(
+                  value: 5,
+                  groupValue: img,
+                  onChanged: (int? value) {
+                    setState(() {
+                      img = 5;
+                    });
+                  },
+                ),
+                const CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/images/rocket.png'),
+                ),
+                Radio(
+                  value: 6,
+                  groupValue: img,
+                  onChanged: (int? value) {
+                    setState(() {
+                      img = 6;
+                    });
+                  },
+                ),
+                const CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/images/man.png'),
+                ),
               ],
             ),
             const TextField(),
@@ -112,11 +138,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   txt = "Add item Success";
 
-                  String curr = 'assets/images/rocket.png';
+                  String curr = 'assets/images/';
                   if (img == 1) curr = 'assets/images/ig.png';
                   if (img == 2) curr = 'assets/images/line.png';
                   if (img == 3) curr = 'assets/images/avenger.png';
                   if (img == 4) curr = 'assets/images/marvel.jpg';
+                  if (img == 5) curr = 'assets/images/rocket.png';
+                  if (img == 6) curr = 'assets/images/man.png';
 
                   mylist.add(data(img, "1", DateTime.now(), curr));
                 });
