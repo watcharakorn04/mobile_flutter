@@ -60,6 +60,8 @@ class DatabaseHelper {
   }
 
   Future<void> initializeUsers() async {
+    final existingUsers = await queryAllUsers();
+    if (existingUsers.isNotEmpty) return;
     List<User> usertoAdd = [
       User(username: 'John', email: 'john@example.com'),
       User(username: 'Jane', email: 'jane@example.com'),
