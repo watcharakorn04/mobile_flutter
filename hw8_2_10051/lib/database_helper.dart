@@ -1,5 +1,5 @@
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 import 'user.dart';
 
 class DatabaseHelper {
@@ -14,35 +14,53 @@ class DatabaseHelper {
   }
 
   Future<Database> initDb() async {
-    String databasePath = await getDatabasesPath();
-    String path = join(databasePath, 'appDB.db');
-    return await openDatabase(path, version: 1, onCreate: _onCreate);
+    String dbPath = await getDatabasesPath();
+    String path = join(dbPath, 'appDBbmi2.db');
+
+    return await openDatabase(
+      path,
+      version: 5,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
   }
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE tbUsers (
-        id INTEGER PRIMARY KEY,
+      CREATE TABLE tbUser(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT,
-        email TEXT
+        email TEXT,
+        pwd TEXT,
+        weight REAL,
+        height REAL,
+        bmi REAL,
+        bmiType TEXT,
+        targetWeight REAL
       )
     ''');
   }
 
+  Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 5) {
+      await db.execute('ALTER TABLE tbUser ADD COLUMN targetWeight REAL');
+    }
+  }
+
   Future<int> insertUser(User user) async {
     Database db = await instance.db;
-    return await db.insert('tbUsers', user.toMap());
+    return await db.insert('tbUser', user.toMap());
   }
 
   Future<List<Map<String, dynamic>>> queryAllUsers() async {
     Database db = await instance.db;
-    return await db.query('tbUsers');
+    return await db.query('tbUser');
   }
 
   Future<int> updateUser(User user) async {
     Database db = await instance.db;
     return await db.update(
-      'tbUsers',
+      'tbUser',
       user.toMap(),
       where: 'id = ?',
       whereArgs: [user.id],
@@ -51,26 +69,15 @@ class DatabaseHelper {
 
   Future<int> deleteUser(int id) async {
     Database db = await instance.db;
-    return await db.delete('tbUsers', where: 'id = ?', whereArgs: [id]);
+    return await db.delete('tbUser', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<void> deleteAllUsers() async {
     Database db = await instance.db;
-    await db.delete('tbUsers');
+    await db.delete('tbUser');
   }
 
-  Future<void> initializeUsers() async {
-    final existingUsers = await queryAllUsers();
-    if (existingUsers.isNotEmpty) return;
-    List<User> usertoAdd = [
-      User(username: 'John', email: 'john@example.com'),
-      User(username: 'Jane', email: 'jane@example.com'),
-      User(username: 'Alice', email: 'alice@example.com'),
-      User(username: 'Bob', email: 'bob@example.com'),
-    ];
+  Future<void> initializeUsers() async {}
 
-    for (User user in usertoAdd) {
-      await insertUser(user);
-    }
-  }
+  Future<void> updateAllBmi() async {}
 }
