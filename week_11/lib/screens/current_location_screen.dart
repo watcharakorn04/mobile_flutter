@@ -13,7 +13,7 @@ class _CurrentLocationState extends State<CurrentLocation> {
   late GoogleMapController googleMapController;
 
   static const CameraPosition _initialCameraPosition = CameraPosition(
-    target: LatLng(15.208183191993815, 102.04820861591548),
+    target: LatLng(15.257461025044798, 104.85033298880396),
     zoom: 14.4746,
   );
 

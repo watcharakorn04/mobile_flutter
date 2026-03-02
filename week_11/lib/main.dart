@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(13.811772, 100.489029);
+  final LatLng _center = const LatLng(15.257461025044798, 104.85033298880396);
   final Set<Marker> _markers = Set<Marker>();
 
   void _onMapCreated(GoogleMapController controller) {
